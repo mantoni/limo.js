@@ -51,6 +51,21 @@ test('file', {
   },
 
 
+  'should throw if config is array': sinon.test(function () {
+    var fs = require('fs');
+    this.stub(fs, 'readFileSync').returns('[]');
+
+    try {
+      limo('some/config');
+      assert.fail('Exception expected');
+    } catch (e) {
+      assert.equal(e.name, 'TypeError');
+      assert.equal(e.message,
+        'Config \'some/config\' is array. Must be object.');
+    }
+  }),
+
+
   'should return licy': function () {
     var result = limo('test/fixture/index.json');
 
