@@ -16,6 +16,7 @@ var limo    = require('../lib/limo');
 
 var a       = require('./fixture/a');
 var b       = require('./fixture/b');
+var c       = require('./fixture/c');
 
 
 test('file', {
@@ -30,9 +31,11 @@ test('file', {
 
     limo('test/fixture/index.json');
 
-    sinon.assert.calledTwice(licy.plugin);
+    sinon.assert.calledThrice(licy.plugin);
     sinon.assert.calledWith(licy.plugin, 'fixture.a', a);
     sinon.assert.calledWith(licy.plugin, 'fixture.b', b);
+    sinon.assert.calledWith(licy.plugin, 'fixture.c',
+      ['fixture.a', 'fixture.b'], c);
   }),
 
 

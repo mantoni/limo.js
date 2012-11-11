@@ -42,16 +42,10 @@ A config contains key value pairs where the key is going to be used as the licy.
 {
   "router.static"   : "./lib/router/static",
   "router.template" : "./lib/router/template",
-  "server"          : "./lib/server"
-}
-```
-
-It's also valid to specify an array of plugins for a single name:
-
-```js
-{
-  "routers" : ["./lib/router/static", "./lib/router/template"],
-  "server"  : "./lib/server"
+  "server"          : {
+    "module"        : "./lib/server",
+    "dependencies"  : ["router.*"]
+  }
 }
 ```
 

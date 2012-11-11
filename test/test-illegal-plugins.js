@@ -31,15 +31,23 @@ function testThrows(arg, message) {
 test('illegal plugins', {
 
   'should throw for undefined': testThrows(undefined,
-    'Plugin reference for \'test\' is undefined. Must be string or array.'),
+    'Module reference for \'test\' is undefined. Must be string or array.'),
 
   'should throw for null': testThrows(null,
-    'Plugin reference for \'test\' is null. Must be string or array.'),
+    'Module reference for \'test\' is null. Must be string or array.'),
 
   'should throw for number': testThrows(0,
-    'Plugin reference for \'test\' is number. Must be string or array.'),
+    'Module reference for \'test\' is number. Must be string or array.'),
 
-  'should throw for object': testThrows({},
-    'Plugin reference for \'test\' is object. Must be string or array.')
+  'should throw for object without module property': testThrows({},
+    'Module reference for \'test\' is undefined. Must be string or array.'),
+
+  'should throw for object with null module property': testThrows({
+    module : null
+  }, 'Module reference for \'test\' is null. Must be string or array.'),
+
+  'should throw for object with object module property': testThrows({
+    module : {}
+  }, 'Module reference for \'test\' is object. Must be string or array.')
 
 });

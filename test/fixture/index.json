@@ -1,4 +1,10 @@
 {
-  "fixture.a" : "a",
-  "fixture.b" : "b"
+  "fixture.a"       : "a",
+
+  "fixture.b"       : "b",
+
+  "fixture.c"       : {
+    "module"        : "c",
+    "dependencies"  : ["fixture.a", "fixture.b"]
+  }
 }

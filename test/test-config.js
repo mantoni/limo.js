@@ -38,16 +38,32 @@ test('config', {
   }),
 
 
-  'should register multiple plugins under same name': sinon.test(function () {
+  'should allow object with module property': sinon.test(function () {
     this.stub(licy, 'plugin');
 
     limo({
-      'fixtures' : ['test/fixture/a', 'test/fixture/b']
+      object    : {
+        module  : 'test/fixture/a'
+      }
     });
 
-    sinon.assert.calledTwice(licy.plugin);
-    sinon.assert.calledWith(licy.plugin, 'fixtures', a);
-    sinon.assert.calledWith(licy.plugin, 'fixtures', b);
+    sinon.assert.calledOnce(licy.plugin);
+    sinon.assert.calledWith(licy.plugin, 'object', a);
+  }),
+
+
+  'should pass dependencies': sinon.test(function () {
+    this.stub(licy, 'plugin');
+
+    limo({
+      thing           : {
+        module        : 'test/fixture/a',
+        dependencies  : ['foo', 'bar']
+      }
+    });
+
+    sinon.assert.calledOnce(licy.plugin);
+    sinon.assert.calledWith(licy.plugin, 'thing', ['foo', 'bar'], a);
   }),
 
 

@@ -7,5 +7,4 @@
  */
 'use strict';
 
-exports.start = function () {};
-
+module.exports = function () {};
