@@ -76,7 +76,7 @@ test('config', {
     } catch (e) {
       assert.equal(e.name, 'Error');
       assert(/^Cannot find module '/.test(e.message));
-      assert(/\/test\/fixture\/unknown'$/.test(e.message));
+      assert(/unknown'$/.test(e.message));
     }
   },
 

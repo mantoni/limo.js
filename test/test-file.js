@@ -45,8 +45,8 @@ test('file', {
       assert.fail('Exception expected');
     } catch (e) {
       assert.equal(e.name, 'Error');
-      assert.equal(e.message,
-        'ENOENT, no such file or directory \'test/fixture/unknown\'');
+      assert(/^ENOENT, no such file or directory/.test(e.message));
+      assert(/unknown'$/.test(e.message));
     }
   },
 
